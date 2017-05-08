@@ -1,0 +1,6 @@
+services:
+  bloginjson.event_subscriber:
+    class: Drupal\bloginjson\EventSubscriber\HideFrontSubscriber
+    arguments: []
+    tags:
+      - {name: event_subscriber}
