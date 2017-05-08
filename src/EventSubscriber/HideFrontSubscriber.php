@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class HideFrontSubscriber implements EventSubscriberInterface {
 
   public function __construct() {
-    $this->user = \Drupal::currentUser();
+    //$this->user = \Drupal::currentUser();
   }
 
   /**
@@ -22,6 +22,10 @@ class HideFrontSubscriber implements EventSubscriberInterface {
    * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event
    */
   public function hideFront(GetResponseEvent $event) {
+
+    if (\Drupal::currentUser()->id() == 1) {
+      return false;
+    }
 
     // si on est sur la page d'accueil, la page profil utilisateurs, on ne fait rien
     if (\Drupal::service('path.matcher')->isFrontPage()) {
